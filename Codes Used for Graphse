@@ -1,0 +1,18 @@
+library(ggplot2)
+
+ggplot(oec %>% filter(DiscoveryYear > 1991), 
+        aes(x = DiscoveryYear)) + 
+    geom_bar(stat="count", fill = "cadetblue") +
+    scale_x_continuous(breaks = seq(1991, 2016, 1)) + 
+    labs(x = "Year", y = "Planets Discovered", title = "Yearly Discovered Planets") +
+    theme_bw() +
+    theme(axis.text.x = element_text(angle = 70, hjust = 1))
+    
+ ggplot(oec %>% filter(DiscoveryYear > 1991, RadiusJpt < 5), 
+        aes(x = DiscoveryYear, y = RadiusJpt, color = RadiusJpt)) + 
+    geom_point(position="jitter")  + 
+    geom_smooth(color = "indianred") +
+    scale_x_continuous(breaks = seq(1991, 2016, 1)) + 
+    labs(x = "Discovery Year", y = "Planet Size (Jupiter Radii)", title = "Planet Size Compared to Jupiter's Radius") +
+    theme_bw() +
+    theme(axis.text.x = element_text(angle = 70, hjust = 1))
